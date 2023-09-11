@@ -6,29 +6,43 @@
 /*   By: rsarac <rsarac@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 21:28:22 by rsarac            #+#    #+#             */
-/*   Updated: 2023/09/10 21:35:27 by rsarac           ###   ########.fr       */
+/*   Updated: 2023/09/11 16:28:23 by rsarac           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-unsigned int ft_strlcpy(char *dest, const char *src, unsigned int size)
+#include <stdio.h>
+int ft_strlen(char *str)
 {
-    unsigned int src_len = 0;
-    unsigned int i = 0;
+    int	i;
 
-    while (src[src_len] != '\0')
-    {
-        src_len++;
-    }
-    unsigned int copy_size = (size > 0) ? (size - 1) : 0;
+	i = 0;
+	while(str[i] != '\0')
+		i++;
+    return(i);
+}
 
-    while (i < copy_size && src[i] != '\0')
-    {
-        dest[i] = src[i];
-        i++;
-    }
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+{
+	unsigned int	i;
+	unsigned int	x;
 
-    dest[i] = '\0';
-    
-    return src_len;
+	x = ft_strlen(src);
+	i = 0;
+	if (size != 0)
+	{
+		while (src [i] != '\0' && i < size - 1)
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
+	}
+	return (x);
+}
+
+int	main()
+{
+	char src[] = "World!";
+	char dest[] = "Hello ";
+	printf("%d | %s", ft_strlcpy(dest, src, 10), dest);
 }
